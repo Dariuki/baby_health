@@ -1,3 +1,5 @@
+import 'package:baby_health/features/widgets/radio_switch.dart';
+import 'package:baby_health/features/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class AddPerson extends StatelessWidget {
@@ -9,6 +11,29 @@ class AddPerson extends StatelessWidget {
       appBar: AppBar(
         title: const Center(
           child: Text('Dodaj'),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            TextFieldWidget(
+              title: 'Imie',
+            ),
+            TextFieldWidget(
+              title: 'Nazwisko',
+            ),
+            TextFieldWidget(
+              title: 'Wiek',
+            ),
+            TextFieldWidget(
+              title: 'Waga',
+            ),
+            TextFieldWidget(
+              title: 'Wzrost',
+            ),
+            const RadioSwitch(),
+          ],
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:baby_health/features/peages/add/add_person.dart';
 import 'package:baby_health/features/widgets/person_tile.dart';
 
 import 'package:flutter/material.dart';
@@ -13,8 +14,14 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddPerson(),
+            ),
+          );
+        },
+        child: const Icon(Icons.person_add_alt_1),
       ),
       body: const _HomePageBody(),
     );
