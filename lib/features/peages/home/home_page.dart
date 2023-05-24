@@ -1,4 +1,5 @@
-import 'package:baby_health/home/widgets/person_tile.dart';
+import 'package:baby_health/features/widgets/person_tile.dart';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

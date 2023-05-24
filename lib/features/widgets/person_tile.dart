@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PersonTile extends StatelessWidget {
+
   const PersonTile({
     super.key,
   });
@@ -23,28 +24,39 @@ class PersonTile extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: const _TileLook(),
+      ),
+    );
+  }
+}
+
+class _TileLook extends StatelessWidget {
+
+  
+  const _TileLook();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        const CircleAvatar(
+          radius: 40,
+        ),
+        Row(
           children: [
-            const CircleAvatar(
-              radius: 40,
+            const Text(
+              'Imie i nazwisko',
+              style: TextStyle(fontSize: 20),
             ),
-            Row(
-              children: [
-                const Text(
-                  'Imie i nazwisko',
-                  style: TextStyle(fontSize: 20),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Edytuj'),
-                ),
-              ],
+            const SizedBox(width: 10),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Edytuj'),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }
