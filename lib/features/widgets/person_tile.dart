@@ -1,7 +1,7 @@
+import 'package:baby_health/features/peages/details/details_page.dart';
 import 'package:flutter/material.dart';
 
 class PersonTile extends StatelessWidget {
-
   const PersonTile({
     super.key,
   });
@@ -31,32 +31,39 @@ class PersonTile extends StatelessWidget {
 }
 
 class _TileLook extends StatelessWidget {
-
-  
   const _TileLook();
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        const CircleAvatar(
-          radius: 40,
-        ),
-        Row(
-          children: [
-            const Text(
-              'Imie i nazwisko',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(width: 10),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Edytuj'),
-            ),
-          ],
-        ),
-      ],
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const DetailsPage(),
+          ),
+        );
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const CircleAvatar(
+            radius: 40,
+          ),
+          Row(
+            children: [
+              const Text(
+                'Imie i nazwisko',
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Edytuj'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
