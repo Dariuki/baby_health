@@ -13,13 +13,14 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
+        TextFormField(
           controller: controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
+              
             ),
-            hintText: title,
+            labelText: title,
           ),
         ),
         const SizedBox(height: 8)

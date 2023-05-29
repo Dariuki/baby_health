@@ -1,3 +1,4 @@
+import 'package:baby_health/features/widgets/button.dart';
 import 'package:baby_health/features/widgets/radio_switch.dart';
 import 'package:baby_health/features/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,10 @@ class AddPerson extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
+        padding: const EdgeInsets.all(15),
+        child: ListView(
           children: [
+            const SizedBox(height: 30),
             TextFieldWidget(
               title: 'Imie',
             ),
@@ -32,7 +34,16 @@ class AddPerson extends StatelessWidget {
             TextFieldWidget(
               title: 'Wzrost',
             ),
+            const SizedBox(height: 30),
             const RadioSwitch(),
+            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MyButton(text: 'Save', onPressed: () {}),
+                MyButton(text: 'Cancel', onPressed: () {}),
+              ],
+            ),
           ],
         ),
       ),

@@ -15,6 +15,9 @@ class _RadioSwitchState extends State<RadioSwitch> {
       children: [
         Expanded(
           child: RadioListTile(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
             contentPadding: const EdgeInsets.all(0),
             tileColor: Colors.deepOrangeAccent.shade100,
             title: const Text('Female'),
@@ -26,6 +29,9 @@ class _RadioSwitchState extends State<RadioSwitch> {
         const SizedBox(width: 5),
         Expanded(
           child: RadioListTile(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
             contentPadding: const EdgeInsets.all(0),
             tileColor: Colors.deepOrangeAccent.shade100,
             title: const Text('Male'),
