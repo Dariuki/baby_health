@@ -1,3 +1,9 @@
+import 'package:baby_health/features/peages/details/add_visit_page.dart';
+import 'package:baby_health/features/peages/details/comments_page.dart';
+import 'package:baby_health/features/peages/details/disease_history_page.dart';
+import 'package:baby_health/features/peages/details/profile_page.dart';
+import 'package:baby_health/features/peages/details/settings_page.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -8,7 +14,14 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  var currentIndex = 0;
+  var selectetPage = 2;
+  final pageOption = const [
+    AddVisit(),
+    DiseaseHistory(),
+    Profile(),
+    Comments(),
+    Settings()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,47 +31,36 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Text('safas'),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (newIndex) {
-          setState(() {
-            currentIndex = newIndex;
-          });
-        },
+      body: pageOption[selectetPage],
+      bottomNavigationBar: ConvexAppBar(
+        initialActiveIndex: selectetPage,
+        style: TabStyle.titled,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Szcegóły',
+          TabItem(
+            icon: Icons.add_circle,
+            title: 'Dodaj wizyte',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_hospital),
-            label: 'informacje o wizytach u lekarzy',
+          TabItem(
+            icon: Icons.library_books_sharp,
+            title: 'Historia chorobowa',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_circle_left_rounded),
-            label: 'Szcegóły',
+          TabItem(
+            icon: Icons.account_circle_sharp,
+            title: 'Profil dziecka',
+          ),
+          TabItem(
+            icon: Icons.announcement_rounded,
+            title: 'Uwagi',
+          ),
+          TabItem(
+            icon: Icons.settings,
+            title: 'Ustawienia',
           ),
         ],
-      ),
-      body: Builder(
-        builder: (context) {
-          if (currentIndex == 1) {
-            return const Center(
-              child: Text('informacje o wizytach u lekarzy'),
-            );
-          }
-          if (currentIndex == 2) {
-            return const Center(
-              child: Text('szczeguły'),
-            );
-          }
-          return Center(
-            child: Container(
-              padding: const EdgeInsets.all(40),
-              color: Colors.amber,
-              child: const Text('hadsihasbf'),
-            ),
-          );
+        onTap: (int index) {
+          setState(() {
+            selectetPage = index;
+          });
         },
       ),
     );
