@@ -8,7 +8,7 @@ class Profile extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          color:  Colors.blue,
+          color: Colors.blue,
           child: const Text('profil'),
         ),
       ),
