@@ -1,6 +1,7 @@
-import 'package:baby_health/features/widgets/button.dart';
-import 'package:baby_health/features/widgets/radio_switch.dart';
-import 'package:baby_health/features/widgets/text_field.dart';
+import 'package:baby_health/domain/widgets/button.dart';
+import 'package:baby_health/domain/widgets/image_picker.dart';
+import 'package:baby_health/domain/widgets/radio_switch.dart';
+import 'package:baby_health/domain/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 class AddPerson extends StatelessWidget {
@@ -18,7 +19,8 @@ class AddPerson extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
+            const ImagePickerWidget(),
             TextFieldWidget(
               title: 'Imie',
             ),
@@ -40,8 +42,16 @@ class AddPerson extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                MyButton(text: 'Save', onPressed: () {}),
-                MyButton(text: 'Cancel', onPressed: () {}),
+                MyButton(
+                  text: 'Save',
+                  onPressed: () {},
+                  icon: Icons.check_circle_outline,
+                ),
+                MyButton(
+                  text: 'Cancel',
+                  onPressed: () {},
+                  icon: Icons.cancel_outlined,
+                ),
               ],
             ),
           ],

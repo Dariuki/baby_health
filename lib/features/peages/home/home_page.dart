@@ -1,5 +1,5 @@
 import 'package:baby_health/features/peages/add/add_person.dart';
-import 'package:baby_health/features/widgets/person_tile.dart';
+import 'package:baby_health/domain/widgets/person_tile.dart';
 
 import 'package:flutter/material.dart';
 

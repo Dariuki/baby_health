@@ -1,3 +1,4 @@
+import 'package:baby_health/domain/widgets/image_picker.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
@@ -5,12 +6,9 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Container(
-          color: Colors.blue,
-          child: const Text('profil'),
-        ),
+        child: ImagePickerWidget(),
       ),
     );
   }

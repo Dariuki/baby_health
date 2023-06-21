@@ -1,5 +1,8 @@
+import 'package:image_picker/image_picker.dart';
+
 class PersonModel {
   PersonModel({
+    required this.image,
     required this.name,
     required this.lastName,
     required this.age,
@@ -8,6 +11,7 @@ class PersonModel {
     required this.isFemale,
   });
 
+  final ImagePicker image;
   final String name;
   final String lastName;
   final double age;
