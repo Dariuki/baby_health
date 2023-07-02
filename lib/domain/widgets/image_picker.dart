@@ -8,26 +8,33 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  const ImagePickerWidget({super.key});
+  const ImagePickerWidget({
+    super.key,
+    required this.onSelectImage,
+  });
+
+  final void Function(File image) onSelectImage;
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-  File? _image;
+  File? _selectedImage;
 
-  Future pickImage(ImageSource source) async {
+  void _pickImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+      final imagePicker = ImagePicker();
+      final pickedImage = await imagePicker.pickImage(source: source);
+      if (pickedImage == null) return;
 
-      final imagePermanent = await saveFilePermanently(image.path);
+      final imagePermanent = await saveFilePermanently(pickedImage.path);
 
-      setState(() => _image = imagePermanent);
+      setState(() => _selectedImage = imagePermanent);
     } on PlatformException catch (e) {
       ('Failed to pick image: $e');
     }
+    widget.onSelectImage(_selectedImage!);
   }
 
   Future<File> saveFilePermanently(String imagePath) async {
@@ -90,7 +97,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             MyButton(
               text: 'Galery',
               onPressed: () {
-                pickImage(ImageSource.gallery);
+                _pickImage(ImageSource.gallery);
                 Navigator.pop(context);
               },
               icon: Icons.image_outlined,
@@ -99,7 +106,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             MyButton(
               text: 'camera',
               onPressed: () {
-                pickImage(ImageSource.camera);
+                _pickImage(ImageSource.camera);
                 Navigator.pop(context);
               },
               icon: Icons.camera_alt_outlined,
@@ -110,7 +117,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     );
   }
 
-  image() => _image == null
+  image() => _selectedImage == null
       ? const AssetImage('images/ludzik.png')
-      : FileImage(File(_image!.path));
+      : FileImage(File(_selectedImage!.path));
 }

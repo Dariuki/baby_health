@@ -1,21 +1,29 @@
-import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:uuid/uuid.dart';
+
+const uuid = Uuid();
 
 class PersonModel {
   PersonModel({
     required this.image,
-    required this.name,
+    required this.firstName,
     required this.lastName,
     required this.age,
     required this.weight,
     required this.growth,
-    required this.isFemale,
-  });
+    // required this.isFemale,
+  }) : id = uuid.v4();
 
-  final ImagePicker image;
-  final String name;
+  final String id;
+  final File image;
+  final String firstName;
   final String lastName;
   final double age;
   final double weight;
   final double growth;
-  final bool isFemale;
+  // final bool isFemale;
+
+  String get name {
+    return '$firstName $lastName';
+  }
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  final controller = TextEditingController();
+  final TextEditingController controller;
   final String title;
 
-  TextFieldWidget({
+  const TextFieldWidget({
     super.key,
     required this.title,
+    required this.controller,
   });
 
   @override
@@ -18,7 +19,6 @@ class TextFieldWidget extends StatelessWidget {
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              
             ),
             labelText: title,
           ),

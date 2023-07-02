@@ -1,14 +1,17 @@
-import 'package:baby_health/domain/widgets/image_picker.dart';
+import 'package:baby_health/domain/models/person_model.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
-
+  const Profile(
+    this.model, {
+    super.key,
+  });
+  final PersonModel model;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: ImagePickerWidget(),
+        child: Text(model.name),
       ),
     );
   }

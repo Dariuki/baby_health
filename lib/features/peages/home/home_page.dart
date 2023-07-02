@@ -1,12 +1,17 @@
+import 'package:baby_health/domain/providers/person_pro.dart';
 import 'package:baby_health/features/peages/add/add_person.dart';
 import 'package:baby_health/domain/widgets/person_tile.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+   final personModel = ref.watch(personsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -23,22 +28,9 @@ class HomePage extends StatelessWidget {
         },
         child: const Icon(Icons.person_add_alt_1),
       ),
-      body: const _HomePageBody(),
-    );
-  }
-}
-
-class _HomePageBody extends StatelessWidget {
-  const _HomePageBody();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        PersonTile(),
-        PersonTile(),
-        PersonTile(),
-      ],
+      body: PersonTile(
+        personModels: personModel,
+      ),
     );
   }
 }
