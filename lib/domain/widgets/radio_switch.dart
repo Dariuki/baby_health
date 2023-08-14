@@ -12,8 +12,6 @@ class RadioSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color tileColor = isFemale ? Colors.pinkAccent : Colors.blueAccent;
-
     return Row(
       children: [
         Expanded(
@@ -22,7 +20,7 @@ class RadioSwitch extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             contentPadding: const EdgeInsets.all(0),
-            tileColor: tileColor,
+            tileColor: Colors.black45,
             title: const Text('Female'),
             value: true,
             groupValue: isFemale,
@@ -36,7 +34,7 @@ class RadioSwitch extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             contentPadding: const EdgeInsets.all(0),
-            tileColor: tileColor,
+            tileColor: Colors.black45,
             title: const Text('Male'),
             value: false,
             groupValue: isFemale,

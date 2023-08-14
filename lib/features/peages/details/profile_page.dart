@@ -7,28 +7,55 @@ class Profile extends StatelessWidget {
     super.key,
   });
   final PersonModel model;
+
+  String getGenderString() {
+    return model.isFemale ? 'Kobieta' : 'Mężczyzna';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Center(
-              child: Text(model.name),
+        child: Card(
+          margin: const EdgeInsets.all(16),
+          elevation: 3,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  backgroundImage: FileImage(model.image),
+                  radius: 60,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  model.name,
+                  style: const TextStyle(fontSize: 18),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Wiek: ${model.age.toInt()}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Płeć: ${getGenderString()}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Waga: ${model.weight.toString()}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Wzrost: ${model.growth.toInt()}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
             ),
-            Center(
-              child: Text(model.age.toString()),
-            ),
-            Center(
-              child: Text(model.weight.toString()),
-            ),
-            Center(
-              child: Text(model.growth.toString()),
-            ),
-            Center(
-              child: Text(model.isFemale.toString()),
-            ),
-          ],
+          ),
         ),
       ),
     );

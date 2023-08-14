@@ -63,7 +63,7 @@ class _AddPersonState extends ConsumerState<AddPerson> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('Dodaj'),
+          child: Text('Dodaj '),
         ),
       ),
       body: Padding(
