@@ -1,6 +1,7 @@
 import 'package:baby_health/domain/providers/person_pro.dart';
 import 'package:baby_health/features/peages/add/add_person.dart';
-import 'package:baby_health/domain/widgets/person_tile.dart';
+
+import 'package:baby_health/features/peages/home/home_page_body.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-   final personModel = ref.watch(personsProvider);
+    final personModel = ref.watch(personsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -28,9 +29,7 @@ class HomePage extends ConsumerWidget {
         },
         child: const Icon(Icons.person_add_alt_1),
       ),
-      body: PersonTile(
-        personModels: personModel,
-      ),
+      body: HomePageBody(personModel: personModel),
     );
   }
 }

@@ -14,21 +14,23 @@ class PersonsNotifier extends StateNotifier<List<PersonModel>> {
     double age,
     double weight,
     double growth,
-    // bool isFemale,
+    bool isFemale,
   ) {
     final newPerson = PersonModel(
-        image: image,
-        firstName: firstName,
-        lastName: lastName,
-        age: age,
-        weight: weight,
-        growth: growth,
-        // isFemale: isFemale
-        );
+      isFemale: isFemale,
+      image: image,
+      firstName: firstName,
+      lastName: lastName,
+      age: age,
+      weight: weight,
+      growth: growth,
+      
+    );
     state = [newPerson, ...state];
   }
 }
 
-final personsProvider = StateNotifierProvider<PersonsNotifier, List<PersonModel>>(
+final personsProvider =
+    StateNotifierProvider<PersonsNotifier, List<PersonModel>>(
   (ref) => PersonsNotifier(),
 );

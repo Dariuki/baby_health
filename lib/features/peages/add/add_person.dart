@@ -4,6 +4,7 @@ import 'package:baby_health/domain/providers/person_pro.dart';
 import 'package:baby_health/domain/widgets/button.dart';
 import 'package:baby_health/domain/widgets/image_picker.dart';
 import 'package:baby_health/domain/widgets/radio_switch.dart';
+
 import 'package:baby_health/domain/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,37 +25,36 @@ class _AddPersonState extends ConsumerState<AddPerson> {
   final _ageControler = TextEditingController();
   final _weightControler = TextEditingController();
   final _growthControler = TextEditingController();
+  bool _isFemale = true;
 
   void _savePerson() {
     final name = _nameControler.text;
     final lastName = _lastNameControler.text;
-    final age = _ageControler.hashCode;
-    final weight = _weightControler.hashCode;
-    final growth = _weightControler.hashCode;
+    final age = int.tryParse(_ageControler.text);
+    final weight = double.tryParse(_weightControler.text);
+    final growth = double.tryParse(_growthControler.text);
 
     if (name.isEmpty ||
         _selectedImage == null ||
         lastName.isEmpty ||
-        age.isEven ||
-        weight.isEven ||
-        growth.isEven) {
+        age == null ||
+        weight == null ||
+        growth == null) {
       return;
     }
 
-    ref.read(personsProvider.notifier).addPerson(
-          _selectedImage!,
-          name,
-          lastName,
-          age.ceilToDouble(),
-          weight.ceilToDouble(),
-          growth.ceilToDouble(),
-        );
+    ref.read(personsProvider.notifier).addPerson(_selectedImage!, name,
+        lastName, age.toDouble(), weight, growth, _isFemale);
     Navigator.of(context).pop();
   }
 
   @override
   void dispose() {
     _nameControler.dispose();
+    _lastNameControler.dispose();
+    _ageControler.dispose();
+    _weightControler.dispose();
+    _growthControler.dispose();
     super.dispose();
   }
 
@@ -97,7 +97,14 @@ class _AddPersonState extends ConsumerState<AddPerson> {
               controller: _growthControler,
             ),
             const SizedBox(height: 30),
-            const RadioSwitch(),
+            RadioSwitch(
+              isFemale: _isFemale,
+              onChanged: (value) {
+                setState(() {
+                  _isFemale = value;
+                });
+              },
+            ),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

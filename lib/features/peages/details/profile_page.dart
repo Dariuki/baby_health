@@ -11,7 +11,25 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(model.name),
+        child: Column(
+          children: [
+            Center(
+              child: Text(model.name),
+            ),
+            Center(
+              child: Text(model.age.toString()),
+            ),
+            Center(
+              child: Text(model.weight.toString()),
+            ),
+            Center(
+              child: Text(model.growth.toString()),
+            ),
+            Center(
+              child: Text(model.isFemale.toString()),
+            ),
+          ],
+        ),
       ),
     );
   }

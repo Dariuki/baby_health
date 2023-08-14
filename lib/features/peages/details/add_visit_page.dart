@@ -6,10 +6,12 @@ class AddVisit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    body: Center(
-      child: Container(color: Colors.black45,
-      child: const Text('Dodaj wizyte'),),
-    ),
+      body: Center(
+        child: Container(
+          color: Colors.black45,
+          child: const Text('Dodaj wizyte'),
+        ),
+      ),
     );
   }
 }
