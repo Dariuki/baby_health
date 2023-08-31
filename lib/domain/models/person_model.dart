@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'package:uuid/uuid.dart';
-
-const uuid = Uuid();
 
 class PersonModel {
-  PersonModel(  {
+  PersonModel({
+    required this.id,
     required this.image,
     required this.firstName,
     required this.lastName,
@@ -12,10 +10,10 @@ class PersonModel {
     required this.weight,
     required this.growth,
     required this.isFemale,
-  }) : id = uuid.v4();
+  });
 
   final String id;
-  final File image;
+  final File? image;
   final String firstName;
   final String lastName;
   final double age;
@@ -27,4 +25,3 @@ class PersonModel {
     return '$firstName $lastName';
   }
 }
-

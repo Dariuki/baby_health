@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:baby_health/domain/providers/person_pro.dart';
-import 'package:baby_health/domain/widgets/button.dart';
-import 'package:baby_health/domain/widgets/image_picker.dart';
-import 'package:baby_health/domain/widgets/radio_switch.dart';
+import 'package:baby_health/widgets/button.dart';
+import 'package:baby_health/widgets/image_picker.dart';
+import 'package:baby_health/widgets/radio_switch.dart';
 
-import 'package:baby_health/domain/widgets/text_field.dart';
+import 'package:baby_health/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddPerson extends ConsumerStatefulWidget {
   const AddPerson({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   ConsumerState<AddPerson> createState() => _AddPersonState();
@@ -20,22 +20,21 @@ class AddPerson extends ConsumerStatefulWidget {
 
 class _AddPersonState extends ConsumerState<AddPerson> {
   File? _selectedImage;
-  final _nameControler = TextEditingController();
-  final _lastNameControler = TextEditingController();
-  final _ageControler = TextEditingController();
-  final _weightControler = TextEditingController();
-  final _growthControler = TextEditingController();
+  final _nameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _ageController = TextEditingController();
+  final _weightController = TextEditingController();
+  final _growthController = TextEditingController();
   bool _isFemale = true;
 
   void _savePerson() {
-    final name = _nameControler.text;
-    final lastName = _lastNameControler.text;
-    final age = int.tryParse(_ageControler.text);
-    final weight = double.tryParse(_weightControler.text);
-    final growth = double.tryParse(_growthControler.text);
+    final name = _nameController.text;
+    final lastName = _lastNameController.text;
+    final age = int.tryParse(_ageController.text);
+    final weight = double.tryParse(_weightController.text);
+    final growth = double.tryParse(_growthController.text);
 
     if (name.isEmpty ||
-        _selectedImage == null ||
         lastName.isEmpty ||
         age == null ||
         weight == null ||
@@ -43,18 +42,26 @@ class _AddPersonState extends ConsumerState<AddPerson> {
       return;
     }
 
-    ref.read(personsProvider.notifier).addPerson(_selectedImage!, name,
-        lastName, age.toDouble(), weight, growth, _isFemale);
+    ref.read(personsProvider.notifier).addPerson(
+          _selectedImage!,
+          name,
+          lastName,
+          age.toDouble(),
+          weight,
+          growth,
+          _isFemale,
+        );
+
     Navigator.of(context).pop();
   }
 
   @override
   void dispose() {
-    _nameControler.dispose();
-    _lastNameControler.dispose();
-    _ageControler.dispose();
-    _weightControler.dispose();
-    _growthControler.dispose();
+    _nameController.dispose();
+    _lastNameController.dispose();
+    _ageController.dispose();
+    _weightController.dispose();
+    _growthController.dispose();
     super.dispose();
   }
 
@@ -63,7 +70,7 @@ class _AddPersonState extends ConsumerState<AddPerson> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('Dodaj '),
+          child: Text('Dodaj'),
         ),
       ),
       body: Padding(
@@ -73,28 +80,35 @@ class _AddPersonState extends ConsumerState<AddPerson> {
             const SizedBox(height: 15),
             ImagePickerWidget(
               onSelectImage: (image) {
-                _selectedImage = image;
+                setState(() {
+                  _selectedImage = image;
+                });
               },
             ),
             TextFieldWidget(
               title: 'Imie',
-              controller: _nameControler,
+              controller: _nameController,
+              keyboardType: TextInputType.name,
             ),
             TextFieldWidget(
               title: 'Nazwisko',
-              controller: _lastNameControler,
+              controller: _lastNameController,
+              keyboardType: TextInputType.name,
             ),
             TextFieldWidget(
               title: 'Wiek',
-              controller: _ageControler,
+              controller: _ageController,
+              keyboardType: TextInputType.number,
             ),
             TextFieldWidget(
               title: 'Waga',
-              controller: _weightControler,
+              controller: _weightController,
+              keyboardType: TextInputType.number,
             ),
             TextFieldWidget(
               title: 'Wzrost',
-              controller: _growthControler,
+              controller: _growthController,
+              keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 30),
             RadioSwitch(
