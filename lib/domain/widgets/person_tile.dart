@@ -28,7 +28,7 @@ class PersonTile extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              backgroundImage: FileImage(personModel.image),
+              backgroundImage: FileImage(personModel.image!),
             ),
             Text(personModel.name),
             Row(

@@ -25,7 +25,7 @@ class Profile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CircleAvatar(
-                  backgroundImage: FileImage(model.image),
+                  backgroundImage: FileImage(model.image!),
                   radius: 60,
                 ),
                 const SizedBox(height: 16),
