@@ -1,9 +1,10 @@
 import 'package:baby_health/domain/models/person_model.dart';
-import 'package:baby_health/features/peages/details/add_visit_page.dart';
-import 'package:baby_health/features/peages/details/comments_page.dart';
-import 'package:baby_health/features/peages/details/disease_history_page.dart';
-import 'package:baby_health/features/peages/details/profile_page.dart';
-import 'package:baby_health/features/peages/details/settings_page.dart';
+import 'package:baby_health/features/peages/details/pages_list/add_visit_page.dart';
+import 'package:baby_health/features/peages/details/pages_list/comments_page.dart';
+import 'package:baby_health/features/peages/details/pages_list/disease_history_page.dart';
+import 'package:baby_health/features/peages/details/pages_list/profile_page.dart';
+import 'package:baby_health/features/peages/details/pages_list/settings_page.dart';
+
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 

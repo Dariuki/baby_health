@@ -12,11 +12,16 @@ class Profile extends StatelessWidget {
     return model.isFemale ? 'Kobieta' : 'Mężczyzna';
   }
 
+  Color? color() {
+    return model.isFemale ? Colors.pink[100] : Colors.blue[100];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Card(
+          color: color(),
           margin: const EdgeInsets.all(16),
           elevation: 3,
           child: Padding(

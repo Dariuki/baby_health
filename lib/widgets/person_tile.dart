@@ -1,3 +1,4 @@
+import 'package:baby_health/features/peages/add/edit_person.dart';
 import 'package:flutter/material.dart';
 import 'package:baby_health/domain/models/person_model.dart';
 import 'package:baby_health/features/peages/details/details_page.dart';
@@ -35,7 +36,12 @@ class PersonTile extends StatelessWidget {
               children: [
                 const SizedBox(width: 10),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => EditPerson(
+                              person: personModel,
+                            )));
+                  },
                   child: const Text('Edytuj'),
                 ),
               ],
