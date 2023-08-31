@@ -1,24 +1,27 @@
 import 'dart:io';
 
+import 'package:baby_health/domain/models/person_model.dart';
 import 'package:baby_health/domain/providers/person_pro.dart';
 import 'package:baby_health/domain/widgets/button.dart';
 import 'package:baby_health/domain/widgets/image_picker.dart';
 import 'package:baby_health/domain/widgets/radio_switch.dart';
 import 'package:baby_health/domain/widgets/text_field.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPerson extends ConsumerStatefulWidget {
-  const AddPerson({
+class EditPerson extends ConsumerStatefulWidget {
+  final PersonModel person;
+
+  const EditPerson({
     Key? key,
+    required this.person,
   }) : super(key: key);
 
   @override
-  ConsumerState<AddPerson> createState() => _AddPersonState();
+  ConsumerState<EditPerson> createState() => _EditPersonState();
 }
 
-class _AddPersonState extends ConsumerState<AddPerson> {
+class _EditPersonState extends ConsumerState<EditPerson> {
   File? _selectedImage;
   final _nameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -27,7 +30,19 @@ class _AddPersonState extends ConsumerState<AddPerson> {
   final _growthController = TextEditingController();
   bool _isFemale = true;
 
-  void _savePerson() {
+  @override
+  void initState() {
+    super.initState();
+    _selectedImage = widget.person.image;
+    _nameController.text = widget.person.firstName;
+    _lastNameController.text = widget.person.lastName;
+    _ageController.text = widget.person.age.toString();
+    _weightController.text = widget.person.weight.toString();
+    _growthController.text = widget.person.growth.toString();
+    _isFemale = widget.person.isFemale;
+  }
+
+  void _updatePerson() {
     final name = _nameController.text;
     final lastName = _lastNameController.text;
     final age = int.tryParse(_ageController.text);
@@ -42,8 +57,9 @@ class _AddPersonState extends ConsumerState<AddPerson> {
       return;
     }
 
-    ref.read(personsProvider.notifier).addPerson(
-          _selectedImage!,
+    ref.read(personsProvider.notifier).updatePerson(
+          widget.person.id,
+          _selectedImage,
           name,
           lastName,
           age.toDouble(),
@@ -70,7 +86,7 @@ class _AddPersonState extends ConsumerState<AddPerson> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('Dodaj'),
+          child: Text('Edycja osoby'),
         ),
       ),
       body: Padding(
@@ -86,7 +102,7 @@ class _AddPersonState extends ConsumerState<AddPerson> {
               },
             ),
             TextFieldWidget(
-              title: 'Imie',
+              title: 'Imię',
               controller: _nameController,
               keyboardType: TextInputType.name,
             ),
@@ -124,12 +140,12 @@ class _AddPersonState extends ConsumerState<AddPerson> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 MyButton(
-                  text: 'Save',
-                  onPressed: _savePerson,
+                  text: 'Zapisz',
+                  onPressed: _updatePerson,
                   icon: Icons.check_circle_outline,
                 ),
                 MyButton(
-                  text: 'Cancel',
+                  text: 'Anuluj',
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
